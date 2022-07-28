@@ -14,6 +14,8 @@ import { autoUpdater } from 'electron-updater';
 import log from 'electron-log';
 import MenuBuilder from './menu';
 import { resolveHtmlPath } from './util';
+import dbInit from '../database/init';
+import * as User from '../database/controllers/ControllerUser';
 
 class AppUpdater {
   constructor() {
@@ -29,6 +31,11 @@ ipcMain.on('ipc-example', async (event, arg) => {
   const msgTemplate = (pingPong: string) => `IPC test: ${pingPong}`;
   console.log(msgTemplate(arg));
   event.reply('ipc-example', msgTemplate('pong'));
+});
+
+ipcMain.handle('get-profile-detail', (event, args) => {
+  console.log('Invoke invoked');
+  return 'É O TRIKAS';
 });
 
 if (process.env.NODE_ENV === 'production') {
@@ -135,3 +142,13 @@ app
     });
   })
   .catch(console.log);
+
+dbInit();
+
+ipcMain.on('ipc-user', async (event, arg) => {
+  const opcao = arg[0];
+  const userData = arg[1];
+  const msgTemplate = (data: unknown) => `IPC User ${data}`;
+  console.log(msgTemplate(arg));
+  event.reply('ipc-example', msgTemplate(arg));
+});

@@ -28,4 +28,4 @@ const use = async () => {
 
 use();
 
-window.user.createUser('ipc-user', newUser);
+// window.user.createUser('ipc-user', newUser);

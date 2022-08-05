@@ -1,3 +1,4 @@
+import { TUser } from 'interfaces/TUser';
 import { Channels, User } from 'main/preload';
 
 declare global {
@@ -13,7 +14,7 @@ declare global {
     };
 
     user: {
-      createUser(channel: User, args: unknown[]): void;
+      createUser(channel: User, newUser: TUser): void;
       on(
         channel: string,
         func: (...args: unknown[]) => void

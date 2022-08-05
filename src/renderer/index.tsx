@@ -1,8 +1,14 @@
+import { TUser } from 'interfaces/TUser';
 import { createRoot } from 'react-dom/client';
 import App from './App';
 
 const container = document.getElementById('root')!;
 const root = createRoot(container);
+const newUser: TUser = {
+  name: 'Diego',
+  user: 'diegu',
+  password: '123454448',
+};
 root.render(<App />);
 
 // calling IPC exposed from preload script
@@ -22,7 +28,4 @@ const use = async () => {
 
 use();
 
-window.user.createUser('ipc-user', [
-  'create',
-  { name: 'Diego', user: 'diegu', password: '123454448' },
-]);
+window.user.createUser('ipc-user', newUser);

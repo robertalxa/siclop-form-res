@@ -146,6 +146,6 @@ app
 dbInit();
 
 ipcMain.on('ipc-user', async (event, arg) => {
-  console.log(`log em ipc user ${JSON.stringify(arg[1], null, 2)}`);
-  cUser.create(arg[1]);
+  console.log(`log em ipc user ${JSON.stringify(arg, null, 2)}`);
+  cUser.create(arg);
 });

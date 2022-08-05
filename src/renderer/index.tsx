@@ -22,7 +22,7 @@ const use = async () => {
 
 use();
 
-window.user.buscaUsers('ipc-user', [
+window.user.createUser('ipc-user', [
   'create',
-  { name: 'Roberto', username: 'robert', password: '123456' },
+  { name: 'Diego', user: 'diegu', password: '123454448' },
 ]);

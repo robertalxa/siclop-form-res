@@ -15,7 +15,7 @@ import log from 'electron-log';
 import MenuBuilder from './menu';
 import { resolveHtmlPath } from './util';
 import dbInit from '../database/init';
-import * as User from '../database/controllers/ControllerUser';
+import * as cUser from '../database/controllers/ControllerUser';
 
 class AppUpdater {
   constructor() {
@@ -146,9 +146,6 @@ app
 dbInit();
 
 ipcMain.on('ipc-user', async (event, arg) => {
-  const opcao = arg[0];
-  const userData = arg[1];
-  const msgTemplate = (data: unknown) => `IPC User ${data}`;
-  console.log(msgTemplate(arg));
-  event.reply('ipc-example', msgTemplate(arg));
+  console.log(`log em ipc user ${JSON.stringify(arg[1], null, 2)}`);
+  cUser.create(arg[1]);
 });

@@ -13,7 +13,6 @@ declare global {
     };
 
     user: {
-      buscaUsers(channel: User, args: unknown[]): void;
       createUser(channel: User, args: unknown[]): void;
       on(
         channel: string,

@@ -58,5 +58,24 @@ a:hover {
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
   margin: 20px 0;
+}
+
+.label {
+  margin: 5px;
+}
+
+.button {
+  margin-top: 10px;
+  color: #FFFFFF;
+  background-color: #004c72;
+  border-radius: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 2em;
+  width: 8em;
+  font-size: large;
+  font-weight: 600;
 }

@@ -3,6 +3,14 @@ import { MemoryRouter as Router, Route, Routes } from 'react-router-dom';
 import icon from '../../assets/logosiclop.png';
 import './App.css';
 
+let connectionStatus = 'Status do banco: ';
+
+const testConnection = async () => {
+  connectionStatus += await window.electron.getConnectionStatus();
+};
+
+testConnection();
+
 const Hello = () => {
   const [name, setName] = useState<string>('');
   const [username, setUsername] = useState<string>('');
@@ -26,6 +34,7 @@ const Hello = () => {
         <img width="200" alt="icon" src={icon} />
       </div>
       <h1>PROTÓTIPO HIBRIDO SICLOP</h1>
+      <h3 className="statusBanco">{connectionStatus}</h3>
       <form onSubmit={handleSubmit}>
         <div className="Hello">
           <label htmlFor="nome" className="label">

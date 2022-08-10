@@ -20,7 +20,7 @@ deleteSourceMaps();
 
 const configuration: webpack.Configuration = {
   devtool: 'source-map',
-
+  externals: ['pg', 'sqlite3', 'tedious', 'pg-hstore'],
   mode: 'production',
 
   target: ['web', 'electron-renderer'],

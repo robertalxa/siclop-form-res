@@ -4,7 +4,7 @@ import { Channels, User } from 'main/preload';
 declare global {
   interface Window {
     electron: {
-      getProfileInfo(args: unknown[]): void;
+      getConnectionStatus(): string;
       sendMessage(channel: Channels, args: unknown[]): void;
       on(
         channel: string,

@@ -17,8 +17,7 @@ contextBridge.exposeInMainWorld('electron', {
   once(channel: Channels, func: (...args: unknown[]) => void) {
     ipcRenderer.once(channel, (_event, ...args) => func(...args));
   },
-  getProfileInfo: (args: unknown[]) =>
-    ipcRenderer.invoke('get-profile-detail', args),
+  getConnectionStatus: () => ipcRenderer.invoke('get-connection-status', ''),
 });
 
 contextBridge.exposeInMainWorld('user', {

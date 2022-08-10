@@ -12,9 +12,12 @@ import path from 'path';
 import { app, BrowserWindow, shell, ipcMain } from 'electron';
 import { autoUpdater } from 'electron-updater';
 import log from 'electron-log';
+import installedExtension, {
+  REDUX_DEVTOOLS,
+} from 'electron-devtools-installer';
 import MenuBuilder from './menu';
 import { resolveHtmlPath } from './util';
-import dbInit from '../database/init';
+import dbSync from '../database/sync';
 import * as cUser from '../database/controllers/ControllerUser';
 
 class AppUpdater {
@@ -31,11 +34,6 @@ ipcMain.on('ipc-example', async (event, arg) => {
   const msgTemplate = (pingPong: string) => `IPC test: ${pingPong}`;
   console.log(msgTemplate(arg));
   event.reply('ipc-example', msgTemplate('pong'));
-});
-
-ipcMain.handle('get-profile-detail', (event, args) => {
-  console.log('Invoke invoked');
-  return 'É O TRIKAS';
 });
 
 if (process.env.NODE_ENV === 'production') {
@@ -99,6 +97,10 @@ const createWindow = async () => {
     } else {
       mainWindow.show();
     }
+
+    installedExtension(REDUX_DEVTOOLS)
+      .then((name: string) => console.log(`Added Extension:  ${name}`))
+      .catch((err: string) => console.log('An error occurred: ', err));
   });
 
   mainWindow.on('closed', () => {
@@ -143,7 +145,7 @@ app
   })
   .catch(console.log);
 
-dbInit();
+dbSync();
 
 ipcMain.on('ipc-user', async (event, arg) => {
   console.log(`log em ipc user ${JSON.stringify(arg, null, 2)}`);
